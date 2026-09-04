@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="data:,">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1">
+  <title>Wear Web Form</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      background: #f8fafc;
+      color: #10233f;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 15px 14px 84px;
+      background:
+        radial-gradient(circle at 100% 0, #dbeafe 0, transparent 42%),
+        #f8fafc;
+    }
+
+    header {
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 3px;
+      font-size: 18px;
+      letter-spacing: -0.4px;
+    }
+
+    .lead {
+      margin: 0;
+      color: #52647e;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .card {
+      margin: 9px 0;
+      padding: 12px;
+      border: 1px solid #dbe5f0;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 8px 24px rgba(51, 65, 85, 0.08);
+      scroll-margin-top: 10px;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .card.lab-active {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.16),
+        0 8px 24px rgba(51, 65, 85, 0.08);
+    }
+
+    .step {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      color: #2563eb;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+    }
+
+    label,
+    .context-copy {
+      display: block;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .file-button,
+    button {
+      display: block;
+      width: 100%;
+      min-height: 42px;
+      margin-top: 7px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 42px;
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 72px;
+      margin-top: 7px;
+      padding: 10px;
+      resize: none;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      outline: none;
+      background: #f8fafc;
+      color: #10233f;
+      font: inherit;
+      font-size: 12px;
+    }
+
+    textarea:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.14);
+    }
+
+    .meta {
+      margin: 8px 0 0;
+      color: #64748b;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .context-copy {
+      padding: 9px;
+      border-radius: 12px;
+      background: #eef6ff;
+      line-height: 1.55;
+      -webkit-user-select: text;
+      user-select: text;
+    }
+
+    .context-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 9px;
+    }
+
+    .context-row img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+    }
+
+    .context-row a {
+      color: #2563eb;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .cookie {
+      color: #0f766e;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Photo note</h1>
+    <p class="lead">
+      File, keyboard, menu, cookie, and form-refresh flows on one page.
+    </p>
+  </header>
+
+  <form action="xxxxx" method="post" enctype="multipart/form-data"> <!-- add your post address -->
+    <section id="file-demo" class="card">
+      <span class="step">01 File</span>
+      <label for="photo">Select one or more photos</label>
+      <input
+        id="photo"
+        name="photo"
+        type="file"
+        accept="image/*"
+        capture="environment"
+        multiple>
+      <label class="file-button" for="photo">Select photos</label>
+      <p class="meta" id="file-status">No selection yet.</p>
+    </section>
+
+    <section id="keyboard-demo" class="card">
+      <span class="step">02 Keyboard</span>
+      <label for="comment">Short comment</label>
+      <textarea
+        id="comment"
+        name="comment"
+        data-keyboard="wearable"
+        placeholder="Tap to use the quick comment keyboard"></textarea>
+    </section>
+
+    <section id="context-demo" class="card">
+      <span class="step">03 Context menu</span>
+      <p class="context-copy">
+        Select text or long-press the image or link below;
+        try Copy, Select all, and Find on page.
+      </p>
+      <div class="context-row">
+        <img
+          alt="ArkWeb sample image"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' rx='24' fill='%2338bdf8'/%3E%3Cpath d='M24 65l17-19 12 12 10-11 13 18z' fill='white'/%3E%3Ccircle cx='64' cy='30' r='9' fill='%23fef08a'/%3E%3C/svg%3E">
+        <a href="#context-demo">
+          ArkWeb sample link
+        </a>
+      </div>
+    </section>
+
+    <section id="cookie-demo" class="card">
+      <span class="step">04 Cookie and POST</span>
+      <p class="meta">
+        Individual cookie:
+        <span class="cookie" id="cookie-value">reading…</span>
+      </p>
+      <button type="submit">Submit form</button>
+      <p class="meta">
+        After submitting, tap Refresh in the watch interface.
+      </p>
+    </section>
+  </form>
+
+  <script>
+    const fileInput = document.getElementById('photo');
+    const fileStatus = document.getElementById('file-status');
+    fileInput.addEventListener('change', () => {
+      const count = fileInput.files ? fileInput.files.length : 0;
+      fileStatus.textContent = count > 0
+        ? `${count} photo(s) reached the web form.`
+        : 'Selection cancelled.';
+      console.info(`WearWebLab fileCount=${count}`);
+    });
+
+    const cookieValue = document.cookie
+      .split(';')
+      .map(item => item.trim())
+      .find(item => item.startsWith('labSession='));
+    document.getElementById('cookie-value').textContent =
+      cookieValue ? cookieValue.split('=').slice(1).join('=') : 'not found';
+  </script>
+</body>
+</html>
